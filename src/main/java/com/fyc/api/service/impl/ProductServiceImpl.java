@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.fyc.api.entity.Product;
 import com.fyc.api.entity.dto.BarcodeDto;
+import com.fyc.api.entity.dto.StockLessDto;
 import com.fyc.api.exception.ResourceNotFoundException;
 import com.fyc.api.repository.ProductRepository;
 import com.fyc.api.service.ProductService;
@@ -25,6 +26,11 @@ public class ProductServiceImpl implements ProductService {
   @Override
   public List<BarcodeDto> getAllBarcodes() {
     return productRepository.findAllBarcodes();
+  }
+
+  @Override
+  public List<StockLessDto> getStockLess() {
+    return productRepository.findStockLess();
   }
 
   @Override

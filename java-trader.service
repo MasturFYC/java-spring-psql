@@ -1,0 +1,19 @@
+[Unit]
+Description=My Java driven simple service
+After=syslog.target network.target
+
+[Service]
+SuccessExitStatus=143
+
+User=$USER
+# Group=appgroup
+
+Type=simple
+
+# Environment="JAVA_HOME=/path/to/jvmdir"
+WorkingDirectory=/home/fyc/app/java-spring-psql/target
+ExecStart=${JAVA_HOME}/bin/java -jar api-0.0.1-SNAPSHOT.jar
+ExecStop=/bin/kill -15 $MAINPID
+
+[Install]
+WantedBy=multi-user.target

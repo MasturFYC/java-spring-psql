@@ -24,10 +24,10 @@ public class SpringBootApiApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				String[] origins = new String[] { "http://localhost:4200", "http://localhost:5173" };
+				String[] origins = new String[] { "http://localhost:4200", "http://localhost:5173", "https:/malvamelva.com" };
 
 				for (int i = 0; i < 2; i++) {
-					registry.addMapping("/").allowedOrigins(origins[i]);
+					registry.addMapping("/api/**").allowedOrigins(origins[i]);
 				}
 			}
 		};

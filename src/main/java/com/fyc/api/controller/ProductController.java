@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fyc.api.entity.Product;
 import com.fyc.api.entity.dto.BarcodeDto;
 import com.fyc.api.entity.dto.ProductDto;
+import com.fyc.api.entity.dto.StockLessDto;
 import com.fyc.api.service.ProductService;
 
 @RestController
@@ -41,6 +42,12 @@ public class ProductController {
   public List<BarcodeDto> getAllBarcodes() {
     List<BarcodeDto> barcodes = productService.getAllBarcodes();
     return barcodes;
+  }
+
+  @GetMapping("/stockless")
+  public List<StockLessDto> getStokLess() {
+    List<StockLessDto> stocks = productService.getStockLess();
+    return stocks;
   }
 
   @GetMapping()
