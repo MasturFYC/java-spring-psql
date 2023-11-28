@@ -13,9 +13,15 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-boot-api</name>
 	<description>Project for Spring Boot API</description>
+
 	<properties>
 		<java.version>17</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<mainClass>com.fyc.api.SpringBootApiApplication</mainClass>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -30,31 +36,85 @@
 				<artifactId>modelmapper</artifactId>
 				<version>2.3.5</version>
 		</dependency>
-		<dependency>
+		<!--dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
-		</dependency>
+		</dependency-->
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		<dependency>
+		<!--dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
+		</dependency-->
+		<dependency>
+			<groupId>org.springframework.boot.experimental</groupId>
+			<artifactId>spring-boot-thin-layout</artifactId>
+			<version>1.0.31.RELEASE</version>
+		</dependency>		
 	</dependencies>
 
 	<build>
 		<plugins>
-			<plugin>
+			<!-- <plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin> -->
+			<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<version>2.5.1</version>
+					<executions>
+						<execution>
+							<id>copy-dependencies</id>
+							<phase>package</phase>
+							<goals>
+							<goal>copy-dependencies</goal>
+							</goals>
+							<configuration>
+							<outputDirectory>${project.build.directory}/lib/</outputDirectory>
+							</configuration>
+						</execution>
+					</executions>
 			</plugin>
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-jar-plugin</artifactId>
+    <configuration>
+    <archive>
+        <manifest>
+        <addClasspath>true</addClasspath>
+        <classpathPrefix>lib/</classpathPrefix>
+        <mainClass>com.fyc.api.SpringBootApiApplication</mainClass>
+        </manifest>
+    </archive>
+    </configuration>
+</plugin>
+
 		</plugins>
 	</build>
-
+<!-- 	
+	<build>
+<plugins>
+<plugin>
+    <groupId>org.springframework.boot.experimental</groupId>
+    <artifactId>spring-boot-thin-maven-plugin</artifactId>
+    <version>1.0.31.RELEASE</version>
+    <executions>
+        <execution>
+        <id>resolve</id>
+        <goals>
+            <goal>resolve</goal>
+        </goals>
+        <inherited>false</inherited>
+        </execution>
+    </executions>
+</plugin>
+</plugins>
+</build> -->
 </project>
