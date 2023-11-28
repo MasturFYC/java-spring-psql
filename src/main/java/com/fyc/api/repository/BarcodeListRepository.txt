@@ -1,0 +1,9 @@
+package com.fyc.api.repository;
+
+import java.util.List;
+
+import com.fyc.api.entity.BarcodeList;
+
+public interface BarcodeListRepository extends BarcodeReadOnlyRepository<BarcodeList, Long> {
+  List<BarcodeList> findAll();
+}

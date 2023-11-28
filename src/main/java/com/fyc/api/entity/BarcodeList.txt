@@ -1,0 +1,22 @@
+package com.fyc.api.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity()
+@Table(name = "products")
+public class BarcodeList {
+  @Id
+  private long id;
+
+  private String barcode;
+
+  public long getId() {
+    return id;
+  }
+
+  public String getBarcode() {
+    return barcode;
+  }
+}
